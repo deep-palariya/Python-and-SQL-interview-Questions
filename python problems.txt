@@ -1,0 +1,213 @@
+ Python Functions:
+ The numpy.argsort() function is a Numpy function that returns the indices that would sort an array. It returns an array of indices of the same shape as the input array that can be used to index the input array in sorted order.
+
+Syntax: numpy.argsort(a, axis=-1, kind='quicksort', order=None)
+
+Parameters:
+
+a: The array to be sorted.
+axis (optional): The axis along which to sort the indices. If axis is not specified, the array is flattened before sorting.
+kind (optional): Specifies the sorting algorithm to use (e.g., 'quicksort', 'mergesort', 'heapsort').
+order (optional): If a is an array with fields defined, this argument specifies which fields to compare first, second, etc.
+Examples:
+
+python
+Copy code
+import numpy as np
+
+a = np.array([3, 1, 2])
+print(np.argsort(a))
+
+# Output: [1, 2, 0]
+
+The expression x[x[:3].argsort()] will sort the first three rows of the x array along the last axis, resulting in a new array with the same shape as x, but with the rows sorted based on the values in the last column.
+
+Here's the code to demonstrate it:
+import numpy as np
+x=np.array([[1,2,3],[0,5,2],[2,3,4]])
+sorted_index = np.argsort(x[:, 2])
+sorted_x = x[sorted_index]
+print(sorted_x)
+
+# Output:
+# [[1 2 3]
+#  [0 5 2]
+#  [2 3 4]]
+
+
+arr=np.array([1,2,3,4,5])
+print(arr.argsort()[-3
+:][::-1])
+The expression arr.argsort()[-3:][::-1] will give you the indices of the 3 largest elements in the arr array.
+
+Here's the code to demonstrate it:
+
+
+
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5])
+indices = arr.argsort()[-3:][::-1]
+print(indices)
+
+# Output:
+# [4 3 2]
+
+
+
+This means that the largest three elements in arr are located at the indices 4, 3, and 2, in that order. To get the values of the largest three elements, you can use the indices to index into arr:
+
+largest_three = arr[indices]
+print(largest_three)
+
+# Output:
+# [5 4 3]
+
+Problems related to Python Interview:
+
+
+Problem1. Here's a code that takes input numbers from the user until -1 is entered, and calculates the sum, minimum, maximum, and average of the numbers:
+
+
+numbers = []
+while True:
+    number = int(input("Enter a number (-1 to quit): "))
+    if number == -1:
+        break
+    numbers.append(number)
+
+sum_of_numbers = sum(numbers)
+minimum = min(numbers)
+maximum = max(numbers)
+average = sum_of_numbers / len(numbers)
+
+print("Sum of numbers:", sum_of_numbers)
+print("Minimum:", minimum)
+print("Maximum:", maximum)
+print("Average:", average)
+This code uses a while loop to keep taking input numbers from the user until the user enters -1. The input numbers are stored in a list called numbers. After the loop, the sum, minimum, maximum, and average of the numbers are calculated using the built-in sum, min, max, and division operators respectively, and printed out.
+
+Problem2. Here's a code that takes a list of items as input and returns a dictionary with the items as keys and their frequency as values:
+def count_items(lst):
+    item_count = {}
+    for item in lst:
+        if item in item_count:
+            item_count[item] += 1
+        else:
+            item_count[item] = 1
+    return item_count
+
+lst = [1, 2, 3, 1, 2, 1, 3, 3, 4, 5]
+item_count = count_items(lst)
+print(item_count)
+
+# Output:
+# {1: 3, 2: 2, 3: 3, 4: 1, 5: 1}
+This code defines a function count_items that takes a list lst as input and returns a dictionary with the items as keys and their frequency as values. The function uses a dictionary item_count to keep track of the count of each item. For each item in the list, the code checks if the item is already in the dictionary. If it is, the count for that item is incremented by 1. If it is not, a new entry for that item is created with a count of 1. The resulting dictionary is returned as the output.
+
+
+Problem3. Here's a code that takes a sentence as input and calculates the number of words, capital letters, lowercase letters, and special characters:
+
+
+sentence = input("Enter a sentence: ")
+
+word_count = len(sentence.split())
+lower_count = 0
+upper_count = 0
+special_count = 0
+
+for char in sentence:
+    if char.islower():
+        lower_count += 1
+    elif char.isupper():
+        upper_count += 1
+    elif char.isalnum() == False:
+        special_count += 1
+
+print("Number of words:", word_count)
+print("Number of capital letters:", upper_count)
+print("Number of lowercase letters:", lower_count)
+print("Number of special characters:", special_count)
+This code takes a sentence as input from the user and stores it in the variable sentence. The number of words in the sentence is calculated using the split method and the len function. The code then initializes four variables: word_count, lower_count, upper_count, and special_count, which keep track of the number of words, capital letters, lowercase letters, and special characters, respectively.
+
+The code then loops over each character in the sentence using a for loop. For each character, the code checks if the character is a lowercase letter using the islower method, an uppercase letter using the isupper method, or neither using the isalnum method. If the character is a lowercase letter, the lower_count is incremented by 1. If the character is an uppercase letter, the upper_count is incremented by 1. If the character is neither, the special_count is incremented by 1.
+
+Finally, the code prints the number of words, capital letters, lowercase letters, and special characters.
+
+
+
+
+
+Problem4. Here's a code that takes five inputs from the user and compares them against a list of three known names:
+known_names = ['John', 'Jane', 'Jim']
+
+for i in range(5):
+    name = input("Enter a name: ")
+    if name in known_names:
+        print(name, "is a known person")
+    else:
+        print(name, "is not a known person")
+This code defines a list known_names with three known names. The code then uses a for loop to repeat the process of taking input and checking it against the known names five times.
+
+For each iteration of the loop, the code takes an input from the user and stores it in the variable name. The code then uses the in operator to check if the input name is in the known_names list. If it is, the code prints the message "name is a known person". If it is not, the code prints the message "name is not a known person".
+
+
+The range function in Python generates a sequence of numbers starting from 0 (by default) and increments by 1 (by default), and stops before a specified number.
+
+In the example range(5), it generates the sequence of numbers 0, 1, 2, 3, 4. The range function is often used in a for loop to repeat a block of code a specific number of times. For example:
+for i in range(5):
+    print(i)
+	
+Problem5. Here's a  code that calculates the wages of a person based on the specified wage rate for different hours:
+
+hours = int(input("Enter number of hours worked: "))
+wage = 0
+
+if hours <= 8:
+    wage = hours * 100
+elif hours <= 12:
+    wage = 8 * 100 + (hours - 8) * 60
+elif hours <= 16:
+    wage = 8 * 100 + 4 * 60 + (hours - 12) * 70
+elif hours <= 20:
+    wage = 8 * 100 + 4 * 60 + 4 * 70 + (hours - 16) * 80
+else:
+    wage = 8 * 100 + 4 * 60 + 4 * 70 + 4 * 80 + (hours - 20) * 90
+
+print("Wage: Rs.", wage)
+This code takes the number of hours worked as input from the user using the input function and stores it in the variable hours. The code then initializes a variable wage to 0.
+
+The code then uses an if-elif chain to calculate the wage based on the number of hours worked. If the number of hours worked is less than or equal to 8, the wage is calculated as 100 * hours. If the number of hours worked is less than or equal to 12, the wage is calculated as 8 * 100 + (hours - 8) * 60. The calculation for the remaining conditions is similar.
+
+Finally, the code prints the calculated wage.
+
+
+
+Problem6. Here's a code that takes a list of strings representing arrays, and returns the sum of elements in each array:
+  
+array_strings = ["[1, 2, 3]", "[5, 2]", "[6, 4, 3]"]
+
+result = []
+for array_string in array_strings:
+    array = [int(x) for x in array_string[1:-1].split(',')]
+    result.append(sum(array))
+
+print("-".join(str(x) for x in result))
+This code takes a list of strings array_strings and uses a for loop to iterate over each string. For each string, it removes the square brackets, splits the string on the comma, converts each element to an integer, and stores the result in a list called array. The code then calculates the sum of the elements in array and appends it to the list result.
+
+Finally, the code converts each element in the result list to a string and joins them together using the - separator to produce the final result.
+
+
+Problem7. Here's a Python code that finds the maximum length word in a sentence:
+sentence = "This is a sample sentence for finding the maximum length word"
+words = sentence.split()
+max_length = 0
+max_word = ""
+for word in words:
+    if len(word) > max_length:
+        max_length = len(word)
+        max_word = word
+print("The maximum length word is '{}' with length {}".format(max_word, max_length))
+The code takes the sentence as input and splits it into a list of words using the split() function. It then uses a for loop to iterate over the words and find the word with the maximum length. It keeps track of the maximum length and the word with that length in the variables max_length and max_word. Finally, it prints the result.
+
+
+
